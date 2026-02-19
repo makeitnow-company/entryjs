@@ -51,8 +51,14 @@ Entry.Robotis_carCont = {
             this.update();
             return script.callReturn();
         }
-
-        Entry.hw.portData = {};
+        // clear portData only if not RB-100
+        if (Entry.hw.hwModule.id != "7.A,7.B" &&
+            Entry.hw.hwModule.id != "7.C"  &&
+            Entry.hw.hwModule.id != "7.5,7.6"  &&
+            Entry.hw.hwModule.id != "7.7,7.8" &&
+            Entry.hw.hwModule.id != "7.9") {
+            Entry.hw.portData = {};
+        }
         setTimeout(function() {
             Entry.hw.sendQueue = {}
            // Entry.hw.portData = {};
@@ -247,7 +253,7 @@ Entry.Robotis_openCM70 = {
         ko: '로보티즈 IoT',
         en: 'Robotis Open CM70',
     },
-    delay: 15,
+    delay: 50, // 20240401 15ms -> 50ms 동글 또는 제어기에서 buffer overflow 발생 
     readDelay: 30
 };
 
